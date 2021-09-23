@@ -36,6 +36,7 @@
         android:layout_marginLeft="20dp"
         android:backgroundTint="#d4d2cb"
         android:textColor="@color/black"
-        android:text="Eat Cookie" />
+        android:text="Eat Cookie"
+        android:onClick="btnSubmit_onClick"/>
 </RelativeLayout>
 
