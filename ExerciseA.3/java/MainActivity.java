@@ -17,6 +17,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     private final static String KEY_STATUS="com.example.lab2_gankailuntanhouyin.status";
     private final static String KEY_QUES_ANS="com.example.lab2_gankailuntanhouyin.ques_ans";
+    private final static String KEY_CORRECT_ANS="com.example.lab2_gankailuntanhouyin.correct_ans";
     private final static String KEY_REPLY="com.example.lab2_gankailuntanhouyin.reply";
 
     private TextView m_tv_question;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private int m_operator;
     private String question;
     private int answer;
+    private int correctAnswer;
 
 
     @Override
@@ -46,15 +48,15 @@ public class MainActivity extends AppCompatActivity {
 
         if (m_operator == 0) {
             question = m_random1 +" + " +m_random2+" =";
-            answer = m_random1 + m_random2;
+            correctAnswer = m_random1 + m_random2;
         }
         else if (m_operator == 1){
             question = m_random1 +" - " +m_random2+" =";
-            answer = m_random1 - m_random2;
+            correctAnswer = m_random1 - m_random2;
         }
         else{
             question = m_random1 +" * " +m_random2+" =";
-            answer = m_random1 * m_random2;
+            correctAnswer = m_random1 * m_random2;
         }
 
         m_tv_question.setText(question);
@@ -79,16 +81,16 @@ public class MainActivity extends AppCompatActivity {
 
         //Generate random number
         if (m_operator == 0) {
-            question = m_random1 +" + " +m_random2+" =";
-            answer = m_random1 + m_random2;
+            question = m_random1 +" + " +m_random2+" = ";
+            correctAnswer = m_random1 + m_random2;
         }
         else if (m_operator == 1){
-            question = m_random1 +" - " +m_random2+" =";
-            answer = m_random1 - m_random2;
+            question = m_random1 +" - " +m_random2+" = ";
+            correctAnswer = m_random1 - m_random2;
         }
         else{
-            question = m_random1 +" * " +m_random2+" =";
-            answer = m_random1 * m_random2;
+            question = m_random1 +" * " +m_random2+" = ";
+            correctAnswer = m_random1 * m_random2;
         }
         m_tv_question.setText(question);
 
@@ -102,15 +104,18 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,"Please enter answer",Toast.LENGTH_SHORT).show();
         }else{
             Intent sendIntent = new Intent(MainActivity.this,MainActivity2.class);
+            question +=answer;
             //nested if statement to check answer correct or wrong
             if (answer == m_et_answer.getText().toString()){
                 sendIntent.putExtra(KEY_STATUS,1);
                 sendIntent.putExtra(KEY_QUES_ANS,question);
+                sendIntent.putExtra(KEY_CORRECT_ANS,correctAnswer);
                 startActivity(sendIntent);
             }
             else{
                 sendIntent.putExtra(KEY_STATUS,0);
                 sendIntent.putExtra(KEY_QUES_ANS,question);
+                sendIntent.putExtra(KEY_CORRECT_ANS,correctAnswer);
                 startActivity(sendIntent);
             }
         }
@@ -122,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
 
         outState.putString("Question",question);
+        outState.putInt("correctAnswer",correctAnswer);
     }
 
     @Override
@@ -129,5 +135,6 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
 
         question = savedInstanceState.getString("Question");
+        correctAnswer= savedInstanceState.getInt("correctAnswer");
     }
 }
