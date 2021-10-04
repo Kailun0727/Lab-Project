@@ -14,8 +14,11 @@
             android:label="Answer"
             android:parentActivityName=".MainActivity"
             >
+
         </activity>
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:label="Mathematic Quiz">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
