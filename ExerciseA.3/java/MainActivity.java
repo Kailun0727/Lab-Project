@@ -66,11 +66,6 @@ public class MainActivity extends AppCompatActivity {
             m_tv_question.setText(question);
         }
 
-
-
-
-
-
     }
 
     public void btnNewQues_clicked(View view) {
@@ -106,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             Intent sendIntent = new Intent(MainActivity.this,MainActivity2.class);
             question +=answer;
             //nested if statement to check answer correct or wrong
-            if (answer == m_et_answer.getText().toString()){
+            if (Integer.parseInt(answer) == correctAnswer){
                 sendIntent.putExtra(KEY_STATUS,1);
                 sendIntent.putExtra(KEY_QUES_ANS,question);
                 sendIntent.putExtra(KEY_CORRECT_ANS,correctAnswer);
