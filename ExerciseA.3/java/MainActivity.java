@@ -28,8 +28,9 @@ public class MainActivity extends AppCompatActivity {
     private int m_random2;
     private int m_operator;
     private String question;
-    private int answer;
+    private String ques_ans;
     private int correctAnswer;
+
 
 
     @Override
@@ -89,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
         }
         m_tv_question.setText(question);
 
+        
+
     }
 
     public void btnSubmit_clicked(View view) {
@@ -99,21 +102,26 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,"Please enter answer",Toast.LENGTH_SHORT).show();
         }else{
             Intent sendIntent = new Intent(MainActivity.this,MainActivity2.class);
-            question +=answer;
+
             //nested if statement to check answer correct or wrong
             if (Integer.parseInt(answer) == correctAnswer){
+                ques_ans = question + Integer.parseInt(answer);
+                //question +=correctAnswer;
                 sendIntent.putExtra(KEY_STATUS,1);
-                sendIntent.putExtra(KEY_QUES_ANS,question);
+                sendIntent.putExtra(KEY_QUES_ANS,ques_ans);
                 sendIntent.putExtra(KEY_CORRECT_ANS,correctAnswer);
                 startActivity(sendIntent);
             }
             else{
+                ques_ans = question + Integer.parseInt(answer);
+                //question +=answer;
                 sendIntent.putExtra(KEY_STATUS,0);
-                sendIntent.putExtra(KEY_QUES_ANS,question);
+                sendIntent.putExtra(KEY_QUES_ANS,ques_ans);
                 sendIntent.putExtra(KEY_CORRECT_ANS,correctAnswer);
                 startActivity(sendIntent);
             }
         }
+
     }
 
     //This function can save value to bundle
@@ -123,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
         outState.putString("Question",question);
         outState.putInt("correctAnswer",correctAnswer);
+
     }
 
     @Override
