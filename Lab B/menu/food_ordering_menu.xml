@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_shopping"
+        android:icon="@drawable/ic_shopping"
+        android:title="Shopping"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/menu_print"
+        android:icon="@drawable/ic_print"
+        android:title="Print"
+        app:showAsAction="ifRoom" />
+
+
+    //create a sub menu
+    <item
+        android:id="@+id/menu_others"
+        android:title="Others"
+        >
+
+        <menu>
+            <item
+                android:id="@+id/menu_userProfile"
+                android:title="User profile"
+                app:showAsAction="never"
+                />
+
+            <item
+                android:id="@+id/menu_FAQ"
+                android:title="FAQ"
+                app:showAsAction="never"
+                />
+        </menu>
+    </item>
+</menu>
