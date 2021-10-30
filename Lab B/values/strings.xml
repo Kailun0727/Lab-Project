@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Food Ordering</string>
+
+    <string-array name = "mainCourse">
+        <item>Burger</item>
+        <item>Pizza</item>
+        <item>Spagetti</item>
+    </string-array>
+
+</resources>
