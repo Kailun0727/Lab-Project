@@ -2,9 +2,9 @@
     <string name="app_name">Food Ordering</string>
 
     <string-array name = "mainCourse">
-        <item>Burger</item>
-        <item>Pizza</item>
-        <item>Spagetti</item>
+        <item>Burger (RM7.00)</item>
+        <item>Pizza (RM12.00)</item>
+        <item>Spaghetti (RM8.00)</item>
     </string-array>
 
 </resources>
