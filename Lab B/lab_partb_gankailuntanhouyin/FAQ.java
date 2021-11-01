@@ -10,6 +10,7 @@ import java.util.LinkedList;
 
 public class FAQ extends AppCompatActivity {
     private final LinkedList<String> mFAQ = new LinkedList<>();
+    private final LinkedList<String> mFAQQuestion = new LinkedList<>();
     private final LinkedList<String> mFAQAnswer = new LinkedList<>();
     private RecyclerView mRecyclerView;
     private FAQListAdapter mAdapter;
@@ -26,6 +27,12 @@ public class FAQ extends AppCompatActivity {
         mFAQ.addLast("How long do I need to wait for my order ?");
         mFAQ.addLast("Any hidden cost for my order ?");
 
+        mFAQQuestion.addLast("How to make an order ?");
+        mFAQQuestion.addLast("Can I cancel my order ?");
+        mFAQQuestion.addLast("How to view my order status?");
+        mFAQQuestion.addLast("How long do I need to wait for my order ?");
+        mFAQQuestion.addLast("Any hidden cost for my order ?");
+
 
         mFAQAnswer.addLast("Select your order type, main course option, snack option to place your order");
         mFAQAnswer.addLast("Yes, you can cancel your order");
@@ -34,7 +41,7 @@ public class FAQ extends AppCompatActivity {
         mFAQAnswer.addLast("No, there is no hidden cost for your order");
 
         //Create adapter object
-        mAdapter = new FAQListAdapter(this,mFAQ,mFAQ,mFAQAnswer);
+        mAdapter = new FAQListAdapter(this,mFAQ,mFAQQuestion,mFAQAnswer);
 
         mRecyclerView.setAdapter(mAdapter);
 
