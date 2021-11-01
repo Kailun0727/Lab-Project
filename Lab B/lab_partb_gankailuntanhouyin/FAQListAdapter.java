@@ -58,15 +58,15 @@ public class FAQListAdapter extends RecyclerView.Adapter<FAQListAdapter.FAQViewH
                 @Override
                 public void onClick(View v) {
                     int mPosition = getLayoutPosition();
-                    String quesAns = mFAQ.get(mPosition);
-                    String questionOnly = mFAQQuestion.get(mPosition);
-                    String answer = mFAQAnswer.get(mPosition);
+                    String question = mFAQQuestion.get(mPosition) ;
+                    String answer = "\nAnswer : "+ mFAQAnswer.get(mPosition);
+                    String quesAns = question + answer;
+                    String faq = mFAQ.get(mPosition);
 
-
-                    if(!quesAns.endsWith(answer)){
-                        mFAQ.set(mPosition,quesAns +"\nAnswer :"+ answer);
+                    if(!faq.endsWith(answer)){
+                        mFAQ.set(mPosition,quesAns);
                     }else{
-                        mFAQ.set(mPosition,questionOnly);
+                        mFAQ.set(mPosition,question);
                     }
 
                     mAdapter.notifyDataSetChanged();
