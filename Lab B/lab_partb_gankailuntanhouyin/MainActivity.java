@@ -75,17 +75,17 @@ public class MainActivity extends AppCompatActivity {
                         //calculate
                         mainTotal = 7.00;
                         totalAmount =mainTotal +snackTotal;
-                        m_tvTotal.setText("RM"+totalAmount);
+                        m_tvTotal.setText(String.format("RM%.2f",totalAmount));
                         break;
                     case 2:
                         mainTotal = 12.00;
                         totalAmount =mainTotal +snackTotal;
-                        m_tvTotal.setText("RM"+totalAmount);
+                        m_tvTotal.setText(String.format("RM%.2f",totalAmount));
                         break;
                     case 3:
                         mainTotal = 8.00;
                         totalAmount = mainTotal +snackTotal;
-                        m_tvTotal.setText("RM"+totalAmount);
+                        m_tvTotal.setText(String.format("RM%.2f",totalAmount));
                         break;
                     default:
                         break;
@@ -136,11 +136,11 @@ public class MainActivity extends AppCompatActivity {
         snackTotal = 2.50;
         if (c.isChecked()){
             totalAmount +=snackTotal;
-            m_tvTotal.setText("RM"+totalAmount);
+            m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
         else{
             totalAmount -=snackTotal;
-            m_tvTotal.setText("RM"+totalAmount);
+            m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
     }
 
@@ -149,11 +149,11 @@ public class MainActivity extends AppCompatActivity {
         snackTotal = 4.60;
         if (c.isChecked()){
             totalAmount +=snackTotal;
-            m_tvTotal.setText("RM"+totalAmount);
+            m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
         else{
             totalAmount -=snackTotal;
-            m_tvTotal.setText("RM"+totalAmount);
+            m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
 
     }
@@ -164,11 +164,11 @@ public class MainActivity extends AppCompatActivity {
         if (c.isChecked()){
 
             totalAmount +=snackTotal;
-            m_tvTotal.setText("RM"+totalAmount);
+            m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
         else{
             totalAmount -=snackTotal;
-            m_tvTotal.setText("RM"+totalAmount);
+            m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
     }
 
@@ -178,11 +178,11 @@ public class MainActivity extends AppCompatActivity {
         if (c.isChecked()){
 
             totalAmount += snackTotal;
-            m_tvTotal.setText("RM"+totalAmount);
+            m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
         else{
             totalAmount -=snackTotal;
-            m_tvTotal.setText("RM"+totalAmount);
+            m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
     }
 
@@ -192,11 +192,11 @@ public class MainActivity extends AppCompatActivity {
         if (c.isChecked()){
 
             totalAmount +=snackTotal;
-            m_tvTotal.setText("RM"+totalAmount);
+            m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
         else{
             totalAmount -=snackTotal;
-            m_tvTotal.setText("RM"+totalAmount);
+            m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
     }
 
