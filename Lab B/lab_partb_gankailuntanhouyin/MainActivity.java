@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     case 1:
                         //calculate
                         mainTotal = 7.00;
-                        totalAmount =mainTotal +snackTotal;
+                        totalAmount = mainTotal +snackTotal;
                         m_tvTotal.setText(String.format("RM%.2f",totalAmount));
                         break;
                     case 2:
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 3:
                         mainTotal = 8.00;
-                        totalAmount = mainTotal +snackTotal;
+                        totalAmount = mainTotal +snackTotal;;
                         m_tvTotal.setText(String.format("RM%.2f",totalAmount));
                         break;
                     default:
@@ -133,26 +133,32 @@ public class MainActivity extends AppCompatActivity {
 
     public void ckbSalad_clicked(View view) {
         CheckBox c = (CheckBox) view;
-        snackTotal = 2.50;
+        double snackPrice = 2.50;
+
         if (c.isChecked()){
-            totalAmount +=snackTotal;
+            snackTotal +=  snackPrice;
+            totalAmount  = mainTotal + snackTotal;
             m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
         else{
-            totalAmount -=snackTotal;
+            snackTotal -=  snackPrice;
+            totalAmount  -= snackPrice;
             m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
     }
 
     public void ckbFries_clicked(View view) {
         CheckBox c = (CheckBox) view;
-        snackTotal = 4.60;
+        double snackPrice = 4.60;
+
         if (c.isChecked()){
-            totalAmount +=snackTotal;
+            snackTotal +=  snackPrice;
+            totalAmount  = mainTotal + snackTotal;
             m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
         else{
-            totalAmount -=snackTotal;
+            snackTotal -=  snackPrice;
+            totalAmount -=  snackPrice;
             m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
 
@@ -160,42 +166,48 @@ public class MainActivity extends AppCompatActivity {
 
     public void ckbPotato_clicked(View view) {
         CheckBox c = (CheckBox) view;
-        snackTotal = 2.90;
-        if (c.isChecked()){
+        double snackPrice = 2.90;
 
-            totalAmount +=snackTotal;
+        if (c.isChecked()){
+            snackTotal +=  snackPrice;
+            totalAmount  = mainTotal + snackTotal;
             m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
         else{
-            totalAmount -=snackTotal;
+            snackTotal -=  snackPrice;
+            totalAmount -=  snackPrice;
             m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
     }
 
     public void ckbColeslaw_clicked(View view) {
         CheckBox c = (CheckBox) view;
-        snackTotal = 2.60;
-        if (c.isChecked()){
+        double snackPrice = 2.60;
 
-            totalAmount += snackTotal;
+        if (c.isChecked()){
+            snackTotal +=  snackPrice;
+            totalAmount  = mainTotal + snackTotal;
             m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
         else{
-            totalAmount -=snackTotal;
+            snackTotal -=  snackPrice;
+            totalAmount -=  snackPrice;
             m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
     }
 
     public void ckbPie_clicked(View view) {
         CheckBox c = (CheckBox) view;
-        snackTotal = 3.50;
-        if (c.isChecked()){
+        double snackPrice = 3.50;
 
-            totalAmount +=snackTotal;
+        if (c.isChecked()){
+            snackTotal +=  snackPrice;
+            totalAmount  = mainTotal + snackTotal;
             m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
         else{
-            totalAmount -=snackTotal;
+            snackTotal -=  snackPrice;
+            totalAmount -=  snackPrice;
             m_tvTotal.setText(String.format("RM%.2f",totalAmount));
         }
     }
