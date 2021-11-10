@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Already Have an Account?"
+        android:onClick="haveAcc_clicked"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"

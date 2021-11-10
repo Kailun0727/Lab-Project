@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/id_placeholder"
+            android:layout_toRightOf="@+id/iv_book"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_placeholder"
+            android:layout_below="@+id/id"
+            android:layout_toRightOf="@+id/iv_book"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead"/>
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/author_placeholder"
+            android:layout_below="@+id/title"
+            android:layout_toRightOf="@+id/iv_book"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+
+        <TextView
+            android:id="@+id/numberCopies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/numberCopies_placeholder"
+            android:layout_below="@+id/author"
+            android:layout_toRightOf="@+id/iv_book"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+        <ImageView
+            android:id="@+id/iv_book"
+            android:layout_width="400px"
+            android:layout_height="500px"
+
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/book1" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

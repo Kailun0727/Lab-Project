@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">LibraryApp</string>
+    <string name="title_placeholder">Title</string>
+    <string name="author_placeholder">Author</string>
+    <string name="id_placeholder">Id</string>
+    <string name="numberCopies_placeholder">Number Copies</string>
+
+    <string-array name="book_titles">
+        <item>To Kill a Mockingbird</item>
+        <item>The Backwoods Mist</item>
+        <item>When the Stars Align</item>
+        <item>The Lone Planet</item>
+        <item>The Dark Side of Winter</item>
+        <item>Journey To The Past</item>
+    </string-array>
+
+    <string-array name="book_author">
+        <item>Harper Lee</item>
+        <item>J.Patterson</item>
+        <item>Eleanor Fitzgerald</item>
+        <item>Paul Parker</item>
+        <item>Morgan Maxwell</item>
+        <item>Stephen Henry</item>
+    </string-array>
+
+    <array name="book_images">
+        <item>@drawable/book1</item>
+        <item>@drawable/book2</item>
+        <item>@drawable/book3</item>
+        <item>@drawable/book4</item>
+        <item>@drawable/book5</item>
+        <item>@drawable/book6</item>
+    </array>
+
+    <string-array name="book_numberCopies">
+        <item>7</item>
+        <item>13</item>
+        <item>9</item>
+        <item>3</item>
+        <item>6</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="book_id">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+</resources>
