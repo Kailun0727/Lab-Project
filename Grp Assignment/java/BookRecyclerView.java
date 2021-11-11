@@ -24,7 +24,7 @@ public class BookRecyclerView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_book_recycler_view);
 
         //Initialize the RecyclerView
         mRecyclerView = findViewById(R.id.rv_bookList);
@@ -42,6 +42,34 @@ public class BookRecyclerView extends AppCompatActivity {
         //Get the data
         initializeData();
 
+        ItemTouchHelper helper = new ItemTouchHelper(
+                new ItemTouchHelper.SimpleCallback(
+                        ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT|ItemTouchHelper.UP|ItemTouchHelper.DOWN,
+                        ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT
+                )
+                {
+                    @Override
+                    public boolean onMove(@NonNull RecyclerView recyclerView,
+                                          @NonNull RecyclerView.ViewHolder viewHolder,
+                                          @NonNull RecyclerView.ViewHolder target) {
+
+                        int from = viewHolder.getAdapterPosition();
+                        int to = target.getAdapterPosition();
+
+                        Collections.swap(mBookList,from,to);
+                        mAdapter.notifyItemMoved(from,to);
+
+                        return true;
+                    }
+
+                    @Override
+                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                        mBookList.remove(viewHolder.getAdapterPosition());
+                        mAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                    }
+                }
+        );
+        helper.attachToRecyclerView(mRecyclerView);
 
     }
 

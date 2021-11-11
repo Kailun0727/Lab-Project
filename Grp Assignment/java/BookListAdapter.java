@@ -18,13 +18,11 @@ import java.util.ArrayList;
 
 public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookViewHolder>{
     private ArrayList<Book> mBookList;
-    private LayoutInflater mInflater;
     private Context mContext;
 
     BookListAdapter(Context context, ArrayList<Book> bookList){
         this.mBookList = bookList;
         this.mContext = context;
-        mInflater = LayoutInflater.from(context);
     }
 
     @NonNull
@@ -48,7 +46,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
     }
 
 
-    class BookViewHolder extends RecyclerView.ViewHolder{
+    class BookViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         //Member Variables for the TextViews
         private TextView mIdText;
@@ -70,7 +68,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
             mAuthorText = (TextView)itemView.findViewById(R.id.author);
             mBookImage = itemView.findViewById(R.id.iv_book);
             mNumberCopies = (TextView)itemView.findViewById(R.id.numberCopies);
-
+            itemView.setOnClickListener(this);
         }
 
         void bindTo(Book currentBook){
@@ -80,7 +78,21 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
             mAuthorText.setText("Author : "+currentBook.getAuthor());
             Glide.with(mContext).load(currentBook.getImageResource()).into(mBookImage);
             mNumberCopies.setText("Number Copies : "+currentBook.getNumberCopies());
+        }
 
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            Book currentBook = mBookList.get(position);
+            Intent i = new Intent(mContext,BookDetail.class);
+
+            //Store data inside intent
+            i.putExtra ("id", currentBook.getId());
+            i.putExtra ("title", currentBook.getTitle());
+            i.putExtra ("author", currentBook.getAuthor());
+            i.putExtra ("image", currentBook.getImageResource());
+            i.putExtra ("numberCopies", currentBook.getNumberCopies());
+            mContext.startActivity(i);
         }
 
 

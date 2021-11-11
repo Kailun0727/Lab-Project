@@ -43,7 +43,10 @@ public class Register extends AppCompatActivity {
 
                 SharedPreferences.Editor editor = preferences.edit();
 
-                editor.putString(newUsername + newPassword + "data",  newUsername + "\n" + newEmail);
+                editor.putString(newUsername,newUsername);
+                editor.putString(newEmail , newEmail);
+                editor.putString(newPassword , newPassword);
+
                 editor.commit();
 
                 Intent login = new Intent(Register.this, MainActivity.class);
