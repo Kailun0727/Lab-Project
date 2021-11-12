@@ -109,8 +109,9 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("display", userDetails);
         editor.commit();
 
-        String value = preferences.getString(user,null);
-        if(value == null){
+        String username = preferences.getString(user,null);
+        String userPass = preferences.getString(password,null);
+        if(username == null || userPass == null){
             // the key does not exist
             mErrorMsg.setText("Username or password is Incorrect.");
             mErrorMsg.setVisibility(View.VISIBLE);
