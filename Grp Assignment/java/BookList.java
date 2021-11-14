@@ -440,10 +440,6 @@ public class BookList extends AppCompatActivity {
         String username = userDetail.getStringExtra("username");
         SharedPreferences preferences = getSharedPreferences("spLibrary", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        String copies1 =preferences.getString("book1Copies",null);
-        String copies2 =preferences.getString("book2Copies",null);
-        String copies3 =preferences.getString("book3Copies",null);
-        String copies4 =preferences.getString("book4Copies",null);
 
         mId.setText("Id :"+"1");
         mId2.setText("Id :"+"2");
@@ -592,30 +588,12 @@ public class BookList extends AppCompatActivity {
         boolean borrowClicked1 = preferences.getBoolean(username+"borrowClicked1",true);
         boolean returnClicked1 = preferences.getBoolean(username+"returnClicked1",false);
         if( borrowClicked1 ==true && returnClicked1 ==false){
-            //Convert String to date
 
             //Set text view become visible
             String details1 = preferences.getString(username+"details1",null);
             mDate.setVisibility(View.VISIBLE);
             mDate.setText(details1);
 
-            /*try {
-
-                //long days = TimeUnit.DAYS.convert(daysBetween, TimeUnit.MILLISECONDS);
-
-                if(){
-                    int penalty = ((int)days) * 2;
-                    String strPenalty = String.valueOf(penalty);
-
-                    String originalDetail = mDate.getText().toString();
-                    String finalDetail = originalDetail + "\nRM"+strPenalty;
-                    mDate.setVisibility(View.VISIBLE);
-                    mDate.setText(finalDetail);
-                }
-
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }*/
         }
 
 
