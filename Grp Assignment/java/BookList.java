@@ -265,30 +265,79 @@ public class BookList extends AppCompatActivity {
     //Book 2 button
     //Paste to here
     public void btnBorrow_clicked2(View view){
-        Intent userDetail = getIntent();
-        String username=userDetail.getStringExtra("username");
 
-        SharedPreferences preferences = getSharedPreferences("spLibrary", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Confirmation");
+        alert.setMessage("Are you sure want to borrow?");
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                SharedPreferences preferences = getSharedPreferences("spLibrary", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
 
-        String numberCopies = preferences.getString("book2Copies",null);
-        int numberCopiesAfterBorrow = Integer.parseInt(numberCopies);
-        numberCopiesAfterBorrow -= 1;
+                Intent userDetail =getIntent();
+                String username=userDetail.getStringExtra("username");
+                //Execute after Yes clicked
 
-        String numberCopiesAfter = Integer.toString(numberCopiesAfterBorrow);
+                //Calculate borrow date and return date
+                final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                Date dateOfBorrow = new Date();
+                int noOfDays = 7; // 1 week
 
-        editor.putString("book2Copies", numberCopiesAfter);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(dateOfBorrow);
 
-        mCopies2.setText("Copies :"+numberCopiesAfter);
-        Toast.makeText(BookList.this,"book copies"+"has been changed to "+numberCopiesAfter,Toast.LENGTH_LONG).show();
+                String strBorrowDate =  new SimpleDateFormat("yyyy/MM/dd").format(dateOfBorrow);
 
-        editor.putBoolean(username+"borrowClicked2",true);
-        editor.putBoolean(username+"returnClicked2",false);
+                //Store borrow date to shared preferences
+                editor.putString(username+"borrowDate2",strBorrowDate);
 
-        editor.commit();
+                calendar.add(Calendar.DAY_OF_YEAR, noOfDays);
+                Date returnDate = calendar.getTime();
 
-        btn_borrow2.setEnabled(false);
-        btn_return2.setEnabled(true);
+                Date currentDate= new Date();
+                String strReturnDate = new SimpleDateFormat("yyyy/MM/dd").format(returnDate);
+
+                //Store return date to shared preferences
+                editor.putString(username+"returnDate2",strReturnDate);
+
+                String details = "Borrow Date :"+strBorrowDate+"\nReturn Date :"+strReturnDate;
+
+                mDate2.setVisibility(View.VISIBLE);
+                mDate2.setText(details);
+
+                editor.putString(username+"details2",details);
+
+                String numberCopies = preferences.getString("book2Copies",null);
+                int numberCopiesAfterBorrow = Integer.parseInt(numberCopies);
+                numberCopiesAfterBorrow -= 1;
+
+                String numberCopiesAfter = Integer.toString(numberCopiesAfterBorrow);
+
+                editor.putString("book2Copies", numberCopiesAfter);
+
+                mCopies2.setText("Copies :"+numberCopiesAfter);
+
+                editor.putBoolean(username+"borrowClicked2",true);
+                editor.putBoolean(username+"returnClicked2",false);
+
+                editor.commit();
+
+                btn_borrow2.setEnabled(false);
+                btn_return2.setEnabled(true);
+
+                //Toast.makeText(MainActivity.this,"Order submitted",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Execute after No clicked
+                Toast.makeText(BookList.this,"Cancelled",Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert.show();
     }
 
     //Book 2 button
@@ -300,52 +349,124 @@ public class BookList extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("spLibrary", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
-        String numberCopies = preferences.getString("book2Copies",null);
-        int numberCopiesAfterBorrow = Integer.parseInt(numberCopies);
-        numberCopiesAfterBorrow += 1;
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Confirmation");
+        alert.setMessage("Are you sure want to return?");
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Execute after Yes clicked
+                mDate2.setVisibility(View.GONE);
+                String numberCopies = preferences.getString("book2Copies",null);
+                int numberCopiesAfterBorrow = Integer.parseInt(numberCopies);
+                numberCopiesAfterBorrow += 1;
 
-        String numberCopiesAfter = Integer.toString(numberCopiesAfterBorrow);
+                String numberCopiesAfter = Integer.toString(numberCopiesAfterBorrow);
 
-        editor.putString("book2Copies", numberCopiesAfter);
+                editor.putString("book2Copies", numberCopiesAfter);
 
-        mCopies2.setText("Copies :"+numberCopiesAfter);
-        Toast.makeText(BookList.this,"book copies"+"has been changed to "+numberCopiesAfter,Toast.LENGTH_LONG).show();
+                mCopies2.setText("Copies :"+numberCopiesAfter);
 
-        editor.putBoolean(username+"borrowClicked2",false);
-        editor.putBoolean(username+"returnClicked2",true);
-        editor.commit();
+                editor.putBoolean(username+"borrowClicked2",false);
+                editor.putBoolean(username+"returnClicked2",true);
+                editor.commit();
 
-        btn_borrow2.setEnabled(true);
-        btn_return2.setEnabled(false);
+                btn_borrow2.setEnabled(true);
+                btn_return2.setEnabled(false);
+            }
+        });
+
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Execute after No clicked
+                Toast.makeText(BookList.this,"Cancelled",Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert.show();
+
+
+
+
+
     }
 
     //Book 3 button
     //Paste to here
     public void btnBorrow_clicked3(View view){
-        Intent userDetail =getIntent();
-        String username=userDetail.getStringExtra("username");
 
-        SharedPreferences preferences = getSharedPreferences("spLibrary", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Confirmation");
+        alert.setMessage("Are you sure want to borrow?");
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                SharedPreferences preferences = getSharedPreferences("spLibrary", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
 
-        String numberCopies = preferences.getString("book3Copies",null);
-        int numberCopiesAfterBorrow = Integer.parseInt(numberCopies);
-        numberCopiesAfterBorrow -= 1;
+                Intent userDetail =getIntent();
+                String username=userDetail.getStringExtra("username");
+                //Execute after Yes clicked
 
-        String numberCopiesAfter = Integer.toString(numberCopiesAfterBorrow);
+                //Calculate borrow date and return date
+                final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                Date dateOfBorrow = new Date();
+                int noOfDays = 7; // 1 week
 
-        editor.putString("book3Copies", numberCopiesAfter);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(dateOfBorrow);
 
-        mCopies3.setText("Copies :"+numberCopiesAfter);
-        Toast.makeText(BookList.this,"book copies"+"has been changed to "+numberCopiesAfter,Toast.LENGTH_LONG).show();
+                String strBorrowDate =  new SimpleDateFormat("yyyy/MM/dd").format(dateOfBorrow);
 
-        editor.putBoolean(username+"borrowClicked3",true);
-        editor.putBoolean(username+"returnClicked3",false);
+                //Store borrow date to shared preferences
+                editor.putString(username+"borrowDate3",strBorrowDate);
 
-        editor.commit();
+                calendar.add(Calendar.DAY_OF_YEAR, noOfDays);
+                Date returnDate = calendar.getTime();
 
-        btn_borrow3.setEnabled(false);
-        btn_return3.setEnabled(true);
+                Date currentDate= new Date();
+                String strReturnDate = new SimpleDateFormat("yyyy/MM/dd").format(returnDate);
+
+                //Store return date to shared preferences
+                editor.putString(username+"returnDate3",strReturnDate);
+
+                String details = "Borrow Date :"+strBorrowDate+"\nReturn Date :"+strReturnDate;
+
+                mDate3.setVisibility(View.VISIBLE);
+                mDate3.setText(details);
+
+                editor.putString(username+"details3",details);
+
+                String numberCopies = preferences.getString("book3Copies",null);
+                int numberCopiesAfterBorrow = Integer.parseInt(numberCopies);
+                numberCopiesAfterBorrow -= 1;
+
+                String numberCopiesAfter = Integer.toString(numberCopiesAfterBorrow);
+
+                editor.putString("book3Copies", numberCopiesAfter);
+
+                mCopies3.setText("Copies :"+numberCopiesAfter);
+
+                editor.putBoolean(username+"borrowClicked3",true);
+                editor.putBoolean(username+"returnClicked3",false);
+
+                editor.commit();
+
+                btn_borrow3.setEnabled(false);
+                btn_return3.setEnabled(true);
+
+                //Toast.makeText(MainActivity.this,"Order submitted",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Execute after No clicked
+                Toast.makeText(BookList.this,"Cancelled",Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert.show();
     }
 
     //Book 3 button
@@ -357,52 +478,124 @@ public class BookList extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("spLibrary", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
-        String numberCopies = preferences.getString("book3Copies",null);
-        int numberCopiesAfterBorrow = Integer.parseInt(numberCopies);
-        numberCopiesAfterBorrow += 1;
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Confirmation");
+        alert.setMessage("Are you sure want to return?");
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Execute after Yes clicked
+                mDate3.setVisibility(View.GONE);
+                String numberCopies = preferences.getString("book3Copies",null);
+                int numberCopiesAfterBorrow = Integer.parseInt(numberCopies);
+                numberCopiesAfterBorrow += 1;
 
-        String numberCopiesAfter = Integer.toString(numberCopiesAfterBorrow);
+                String numberCopiesAfter = Integer.toString(numberCopiesAfterBorrow);
 
-        editor.putString("book3Copies", numberCopiesAfter);
+                editor.putString("book3Copies", numberCopiesAfter);
 
-        mCopies3.setText("Copies :"+numberCopiesAfter);
-        Toast.makeText(BookList.this,"book copies"+"has been changed to "+numberCopiesAfter,Toast.LENGTH_LONG).show();
+                mCopies3.setText("Copies :"+numberCopiesAfter);
 
-        editor.putBoolean(username+"borrowClicked3",false);
-        editor.putBoolean(username+"returnClicked3",true);
-        editor.commit();
+                editor.putBoolean(username+"borrowClicked3",false);
+                editor.putBoolean(username+"returnClicked3",true);
+                editor.commit();
 
-        btn_borrow3.setEnabled(true);
-        btn_return3.setEnabled(false);
+                btn_borrow3.setEnabled(true);
+                btn_return3.setEnabled(false);
+            }
+        });
+
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Execute after No clicked
+                Toast.makeText(BookList.this,"Cancelled",Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert.show();
+
+
+
+
+
     }
 
     //Book 4 button
     //Paste to here
     public void btnBorrow_clicked4(View view){
-        Intent userDetail =getIntent();
-        String username=userDetail.getStringExtra("username");
 
-        SharedPreferences preferences = getSharedPreferences("spLibrary", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Confirmation");
+        alert.setMessage("Are you sure want to borrow?");
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                SharedPreferences preferences = getSharedPreferences("spLibrary", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
 
-        String numberCopies = preferences.getString("book4Copies",null);
-        int numberCopiesAfterBorrow = Integer.parseInt(numberCopies);
-        numberCopiesAfterBorrow -= 1;
+                Intent userDetail =getIntent();
+                String username=userDetail.getStringExtra("username");
+                //Execute after Yes clicked
 
-        String numberCopiesAfter = Integer.toString(numberCopiesAfterBorrow);
+                //Calculate borrow date and return date
+                final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                Date dateOfBorrow = new Date();
+                int noOfDays = 7; // 1 week
 
-        editor.putString("book4Copies", numberCopiesAfter);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(dateOfBorrow);
 
-        mCopies4.setText("Copies :"+numberCopiesAfter);
-        Toast.makeText(BookList.this,"book copies"+"has been changed to "+numberCopiesAfter,Toast.LENGTH_LONG).show();
+                String strBorrowDate =  new SimpleDateFormat("yyyy/MM/dd").format(dateOfBorrow);
 
-        editor.putBoolean(username+"borrowClicked4",true);
-        editor.putBoolean(username+"returnClicked4",false);
+                //Store borrow date to shared preferences
+                editor.putString(username+"borrowDate4",strBorrowDate);
 
-        editor.commit();
+                calendar.add(Calendar.DAY_OF_YEAR, noOfDays);
+                Date returnDate = calendar.getTime();
 
-        btn_borrow4.setEnabled(false);
-        btn_return4.setEnabled(true);
+                Date currentDate= new Date();
+                String strReturnDate = new SimpleDateFormat("yyyy/MM/dd").format(returnDate);
+
+                //Store return date to shared preferences
+                editor.putString(username+"returnDate4",strReturnDate);
+
+                String details = "Borrow Date :"+strBorrowDate+"\nReturn Date :"+strReturnDate;
+
+                mDate4.setVisibility(View.VISIBLE);
+                mDate4.setText(details);
+
+                editor.putString(username+"details4",details);
+
+                String numberCopies = preferences.getString("book4Copies",null);
+                int numberCopiesAfterBorrow = Integer.parseInt(numberCopies);
+                numberCopiesAfterBorrow -= 1;
+
+                String numberCopiesAfter = Integer.toString(numberCopiesAfterBorrow);
+
+                editor.putString("book4Copies", numberCopiesAfter);
+
+                mCopies3.setText("Copies :"+numberCopiesAfter);
+
+                editor.putBoolean(username+"borrowClicked4",true);
+                editor.putBoolean(username+"returnClicked4",false);
+
+                editor.commit();
+
+                btn_borrow4.setEnabled(false);
+                btn_return4.setEnabled(true);
+
+                //Toast.makeText(MainActivity.this,"Order submitted",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Execute after No clicked
+                Toast.makeText(BookList.this,"Cancelled",Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert.show();
     }
 
     //Book 4 button
@@ -414,23 +607,46 @@ public class BookList extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("spLibrary", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
-        String numberCopies = preferences.getString("book4Copies",null);
-        int numberCopiesAfterBorrow = Integer.parseInt(numberCopies);
-        numberCopiesAfterBorrow += 1;
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Confirmation");
+        alert.setMessage("Are you sure want to return?");
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Execute after Yes clicked
+                mDate4.setVisibility(View.GONE);
+                String numberCopies = preferences.getString("book4Copies",null);
+                int numberCopiesAfterBorrow = Integer.parseInt(numberCopies);
+                numberCopiesAfterBorrow += 1;
 
-        String numberCopiesAfter = Integer.toString(numberCopiesAfterBorrow);
+                String numberCopiesAfter = Integer.toString(numberCopiesAfterBorrow);
 
-        editor.putString("book4Copies", numberCopiesAfter);
+                editor.putString("book4Copies", numberCopiesAfter);
 
-        mCopies4.setText("Copies :"+numberCopiesAfter);
-        Toast.makeText(BookList.this,"book copies"+"has been changed to "+numberCopiesAfter,Toast.LENGTH_LONG).show();
+                mCopies4.setText("Copies :"+numberCopiesAfter);
 
-        editor.putBoolean(username+"borrowClicked4",false);
-        editor.putBoolean(username+"returnClicked4",true);
-        editor.commit();
+                editor.putBoolean(username+"borrowClicked4",false);
+                editor.putBoolean(username+"returnClicked4",true);
+                editor.commit();
 
-        btn_borrow4.setEnabled(true);
-        btn_return4.setEnabled(false);
+                btn_borrow4.setEnabled(true);
+                btn_return4.setEnabled(false);
+            }
+        });
+
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Execute after No clicked
+                Toast.makeText(BookList.this,"Cancelled",Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert.show();
+
+
+
+
+
     }
 
 
@@ -598,12 +814,41 @@ public class BookList extends AppCompatActivity {
 
 
         //here for book 2
+        boolean borrowClicked2 = preferences.getBoolean(username+"borrowClicked2",true);
+        boolean returnClicked2 = preferences.getBoolean(username+"returnClicked2",false);
+        if( borrowClicked2 ==true && returnClicked2 ==false){
+
+            //Set text view become visible
+            String details2 = preferences.getString(username+"details2",null);
+            mDate2.setVisibility(View.VISIBLE);
+            mDate2.setText(details2);
+
+        }
 
 
         //here for book 3
+        boolean borrowClicked3 = preferences.getBoolean(username+"borrowClicked3",true);
+        boolean returnClicked3 = preferences.getBoolean(username+"returnClicked3",false);
+        if( borrowClicked3 ==true && returnClicked3 ==false){
 
+            //Set text view become visible
+            String details3 = preferences.getString(username+"details1",null);
+            mDate3.setVisibility(View.VISIBLE);
+            mDate3.setText(details3);
+
+        }
 
         //here for book 4
+        boolean borrowClicked4 = preferences.getBoolean(username+"borrowClicked4",true);
+        boolean returnClicked4 = preferences.getBoolean(username+"returnClicked4",false);
+        if( borrowClicked4 ==true && returnClicked4 ==false){
+
+            //Set text view become visible
+            String details4 = preferences.getString(username+"details4",null);
+            mDate4.setVisibility(View.VISIBLE);
+            mDate4.setText(details4);
+
+        }
 
 
 
