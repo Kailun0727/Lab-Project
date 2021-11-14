@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:id="@+id/id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/id_placeholder"
+            android:layout_toRightOf="@+id/iv_book"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_placeholder"
+            android:layout_below="@+id/id"
+            android:layout_toRightOf="@+id/iv_book"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead"/>
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/author_placeholder"
+            android:layout_below="@+id/title"
+            android:layout_toRightOf="@+id/iv_book"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+
+        <TextView
+            android:id="@+id/numberCopies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/numberCopies_placeholder"
+            android:layout_below="@+id/author"
+            android:layout_toRightOf="@+id/iv_book"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:layout_below="@+id/numberCopies"
+            android:layout_toRightOf="@+id/iv_book"
+            android:padding="8dp"
+            android:visibility="gone"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+
+        <ImageView
+            android:id="@+id/iv_book"
+            android:layout_width="400px"
+            android:layout_height="650px"
+            android:scaleType="centerCrop"
+            android:src="@drawable/book1"
+            android:adjustViewBounds="true"
+             />
+        <Button
+            android:id="@+id/btn_borrow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_book"
+            android:onClick="btnBorrow_clicked"
+            android:layout_centerHorizontal="true"
+            android:text="Borrow" />
+
+        <Button
+            android:id="@+id/btn_return"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_borrow"
+            android:onClick="btnReturn_clicked"
+            android:enabled="false"
+            android:layout_centerHorizontal="true"
+            android:text="Return" />
+
+        <!-- Book 2 -->
+        <TextView
+            android:id="@+id/id2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/id_placeholder"
+            android:layout_below="@+id/btn_return"
+            android:layout_toRightOf="@+id/iv_book2"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+        <TextView
+            android:id="@+id/title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_placeholder"
+            android:layout_below="@+id/id2"
+            android:layout_toRightOf="@+id/iv_book2"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead"/>
+        <TextView
+            android:id="@+id/author2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/author_placeholder"
+            android:layout_below="@+id/title2"
+            android:layout_toRightOf="@+id/iv_book2"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+        <TextView
+            android:id="@+id/numberCopies2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/numberCopies_placeholder"
+            android:layout_below="@+id/author2"
+            android:layout_toRightOf="@+id/iv_book2"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+        <TextView
+            android:id="@+id/date2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:layout_below="@+id/numberCopies2"
+            android:layout_toRightOf="@+id/iv_book2"
+            android:padding="8dp"
+            android:visibility="gone"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+        <ImageView
+            android:id="@+id/iv_book2"
+            android:layout_width="400px"
+            android:layout_height="650px"
+            android:layout_below="@+id/btn_return"
+            android:scaleType="centerCrop"
+            android:src="@drawable/book2"
+            android:adjustViewBounds="true"
+             />
+        <Button
+            android:id="@+id/btn_borrow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_book2"
+            android:onClick="btnBorrow_clicked2"
+            android:layout_centerHorizontal="true"
+            android:text="Borrow" />
+
+        <Button
+            android:id="@+id/btn_return2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_borrow2"
+            android:onClick="btnReturn_clicked2"
+            android:layout_centerHorizontal="true"
+            android:enabled="false"
+            android:text="Return" />
+
+        <!-- Book 3 -->
+        <TextView
+            android:id="@+id/id3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/id_placeholder"
+            android:layout_below="@+id/btn_return2"
+            android:layout_toRightOf="@+id/iv_book3"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+        <TextView
+            android:id="@+id/title3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_placeholder"
+            android:layout_below="@+id/id3"
+            android:layout_toRightOf="@+id/iv_book3"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead"/>
+        <TextView
+            android:id="@+id/author3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/author_placeholder"
+            android:layout_below="@+id/title3"
+            android:layout_toRightOf="@+id/iv_book3"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+        <TextView
+            android:id="@+id/numberCopies3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/numberCopies_placeholder"
+            android:layout_below="@+id/author3"
+            android:layout_toRightOf="@+id/iv_book3"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+        <TextView
+            android:id="@+id/date3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:layout_below="@+id/numberCopies3"
+            android:layout_toRightOf="@+id/iv_book3"
+            android:padding="8dp"
+            android:visibility="gone"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+        <ImageView
+            android:id="@+id/iv_book3"
+            android:layout_width="400px"
+            android:layout_height="650px"
+            android:layout_below="@+id/btn_return2"
+            android:scaleType="centerCrop"
+            android:src="@drawable/book3"
+            android:adjustViewBounds="true"
+             />
+        <Button
+            android:id="@+id/btn_borrow3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_book3"
+            android:onClick="btnBorrow_clicked3"
+            android:layout_centerHorizontal="true"
+            android:text="Borrow" />
+
+        <Button
+            android:id="@+id/btn_return3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_borrow3"
+            android:onClick="btnReturn_clicked3"
+            android:layout_centerHorizontal="true"
+            android:enabled="false"
+            android:text="Return" />
+
+
+        <!-- Book 4 -->
+        <TextView
+            android:id="@+id/id4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/id_placeholder"
+            android:layout_below="@+id/btn_return3"
+            android:layout_toRightOf="@+id/iv_book4"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+        <TextView
+            android:id="@+id/title4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_placeholder"
+            android:layout_below="@+id/id4"
+            android:layout_toRightOf="@+id/iv_book4"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead"/>
+        <TextView
+            android:id="@+id/author4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/author_placeholder"
+            android:layout_below="@+id/title4"
+            android:layout_toRightOf="@+id/iv_book4"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+        <TextView
+            android:id="@+id/numberCopies4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/numberCopies_placeholder"
+            android:layout_below="@+id/author4"
+            android:layout_toRightOf="@+id/iv_book4"
+            android:padding="8dp"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+        <TextView
+            android:id="@+id/date4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:layout_below="@+id/numberCopies4"
+            android:layout_toRightOf="@+id/iv_book4"
+            android:padding="8dp"
+            android:visibility="gone"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+        <ImageView
+            android:id="@+id/iv_book4"
+            android:layout_width="400px"
+            android:layout_height="650px"
+            android:layout_below="@+id/btn_return3"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:src="@drawable/book4"
+            />
+        <Button
+            android:id="@+id/btn_borrow4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_book4"
+            android:onClick="btnBorrow_clicked4"
+            android:layout_centerHorizontal="true"
+            android:text="Borrow" />
+
+        <Button
+            android:id="@+id/btn_return4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_borrow4"
+            android:onClick="btnReturn_clicked4"
+            android:layout_centerHorizontal="true"
+            android:enabled="false"
+            android:text="Return" />
+
+
+
+    </RelativeLayout>
+
+</ScrollView>
