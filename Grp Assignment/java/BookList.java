@@ -832,7 +832,7 @@ public class BookList extends AppCompatActivity {
         if( borrowClicked3 ==true && returnClicked3 ==false){
 
             //Set text view become visible
-            String details3 = preferences.getString(username+"details1",null);
+            String details3 = preferences.getString(username+"details3",null);
             mDate3.setVisibility(View.VISIBLE);
             mDate3.setText(details3);
 
