@@ -59,11 +59,23 @@
             android:visibility="gone"
             style="@style/TextAppearance.AppCompat.Subhead" />
 
+        <TextView
+            android:id="@+id/penalty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Penalty"
+            android:layout_below="@+id/date"
+            android:layout_toRightOf="@+id/iv_book"
+            android:drawableLeft="@drawable/ic_baseline_error_outline_24"
+            android:padding="8dp"
+            android:visibility="gone"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
 
         <ImageView
             android:id="@+id/iv_book"
             android:layout_width="400px"
-            android:layout_height="650px"
+            android:layout_height="750px"
             android:scaleType="centerCrop"
             android:src="@drawable/book1"
             android:adjustViewBounds="true"
@@ -138,10 +150,24 @@
             android:visibility="gone"
             style="@style/TextAppearance.AppCompat.Subhead" />
 
+        <TextView
+            android:id="@+id/penalty2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Penalty"
+            android:layout_below="@+id/date2"
+            android:layout_toRightOf="@+id/iv_book2"
+            android:drawableLeft="@drawable/ic_baseline_error_outline_24"
+            android:padding="8dp"
+            android:visibility="gone"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
+
+
         <ImageView
             android:id="@+id/iv_book2"
             android:layout_width="400px"
-            android:layout_height="650px"
+            android:layout_height="750px"
             android:layout_below="@+id/btn_return"
             android:scaleType="centerCrop"
             android:src="@drawable/book2"
@@ -217,10 +243,22 @@
             android:visibility="gone"
             style="@style/TextAppearance.AppCompat.Subhead" />
 
+        <TextView
+            android:id="@+id/penalty3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Penalty"
+            android:layout_below="@+id/date3"
+            android:layout_toRightOf="@+id/iv_book3"
+            android:drawableLeft="@drawable/ic_baseline_error_outline_24"
+            android:padding="8dp"
+            android:visibility="gone"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
         <ImageView
             android:id="@+id/iv_book3"
             android:layout_width="400px"
-            android:layout_height="650px"
+            android:layout_height="750px"
             android:layout_below="@+id/btn_return2"
             android:scaleType="centerCrop"
             android:src="@drawable/book3"
@@ -297,10 +335,22 @@
             android:visibility="gone"
             style="@style/TextAppearance.AppCompat.Subhead" />
 
+        <TextView
+            android:id="@+id/penalty4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Penalty"
+            android:layout_below="@+id/date4"
+            android:layout_toRightOf="@+id/iv_book4"
+            android:drawableLeft="@drawable/ic_baseline_error_outline_24"
+            android:padding="8dp"
+            android:visibility="gone"
+            style="@style/TextAppearance.AppCompat.Subhead" />
+
         <ImageView
             android:id="@+id/iv_book4"
             android:layout_width="400px"
-            android:layout_height="650px"
+            android:layout_height="750px"
             android:layout_below="@+id/btn_return3"
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"

@@ -30,11 +30,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
 public class BookList extends AppCompatActivity {
+
+
     //Book 1
     private TextView mId;
     private TextView mTitle;
@@ -44,6 +47,7 @@ public class BookList extends AppCompatActivity {
     private Button btn_borrow;
     private Button btn_return;
     private TextView mDate;
+    private TextView mPenalty;
 
     //Book 2
     private TextView mId2;
@@ -54,6 +58,7 @@ public class BookList extends AppCompatActivity {
     private Button btn_borrow2;
     private Button btn_return2;
     private TextView mDate2;
+    private TextView mPenalty2;
 
     //Book 3
     private TextView mId3;
@@ -64,6 +69,7 @@ public class BookList extends AppCompatActivity {
     private Button btn_borrow3;
     private Button btn_return3;
     private TextView mDate3;
+    private TextView mPenalty3;
 
     //Book 4
     private TextView mId4;
@@ -74,6 +80,7 @@ public class BookList extends AppCompatActivity {
     private Button btn_borrow4;
     private Button btn_return4;
     private TextView mDate4;
+    private TextView mPenalty4;
 
 
 
@@ -128,9 +135,17 @@ public class BookList extends AppCompatActivity {
         btn_return3 = findViewById(R.id.btn_return3);
         btn_return4 = findViewById(R.id.btn_return4);
 
+        mPenalty = findViewById(R.id.penalty);
+        mPenalty2 = findViewById(R.id.penalty2);
+        mPenalty3 = findViewById(R.id.penalty3);
+        mPenalty4 = findViewById(R.id.penalty4);
 
 
-        initialize();
+        try {
+            initialize();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     //This is for book 1 button, copy code below and paste it into book 2, 3 and 4,
@@ -213,7 +228,7 @@ public class BookList extends AppCompatActivity {
 
     //This is for book 1 button, copy code below and paste it into book 2, 3 and 4,
     // remember change 1 -> 2 for book 2, change 1 -> for book 3, change 1 -> 4 for book 4
-    public void btnReturn_clicked(View view){
+    public void btnReturn_clicked(View view) throws ParseException {
         Intent userDetail =getIntent();
         String username=userDetail.getStringExtra("username");
 
@@ -222,11 +237,37 @@ public class BookList extends AppCompatActivity {
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Confirmation");
-        alert.setMessage("Are you sure want to return?");
+
+        String returnDate = preferences.getString(username+"returnDate1",null);
+        final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date returnDate1 = (Date)dateFormat.parse(returnDate);
+
+
+        //Convert date
+        Date currentDate= new Date();
+        String fDate = dateFormat.format(currentDate);
+        Date currentDate1 = (Date)dateFormat.parse(fDate);
+
+        //Calculate the days between two date
+        long diff = currentDate1.getTime() - returnDate1.getTime();
+        float dayCount = (float) diff / (24 * 60 * 60 * 1000);
+        //Convert float to int
+        int dayCountInt = (int)dayCount;
+        if(dayCountInt > 0 ){
+            int penalty =  dayCountInt * 2;
+            alert.setMessage("Are you sure want to return?\nPenalty : RM"+penalty);
+        }else{
+            String str_day = String.valueOf(dayCount);
+            alert.setMessage("Are you sure want to return?");
+        }
+
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //Execute after Yes clicked
+
+
+
                 mDate.setVisibility(View.GONE);
                 String numberCopies = preferences.getString("book1Copies",null);
                 int numberCopiesAfterBorrow = Integer.parseInt(numberCopies);
@@ -244,6 +285,7 @@ public class BookList extends AppCompatActivity {
 
                 btn_borrow.setEnabled(true);
                 btn_return.setEnabled(false);
+                mPenalty.setVisibility(View.GONE);
             }
         });
 
@@ -288,6 +330,7 @@ public class BookList extends AppCompatActivity {
                 calendar.setTime(dateOfBorrow);
 
                 String strBorrowDate =  new SimpleDateFormat("yyyy/MM/dd").format(dateOfBorrow);
+
 
                 //Store borrow date to shared preferences
                 editor.putString(username+"borrowDate2",strBorrowDate);
@@ -342,7 +385,7 @@ public class BookList extends AppCompatActivity {
 
     //Book 2 button
     //Paste to here
-    public void btnReturn_clicked2(View view){
+    public void btnReturn_clicked2(View view) throws ParseException {
         Intent userDetail =getIntent();
         String username=userDetail.getStringExtra("username");
 
@@ -351,7 +394,30 @@ public class BookList extends AppCompatActivity {
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Confirmation");
-        alert.setMessage("Are you sure want to return?");
+
+
+        String returnDate = preferences.getString(username+"returnDate2",null);
+        final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date returnDate2 = (Date)dateFormat.parse(returnDate);
+
+        //Convert date
+        Date currentDate= new Date();
+        String fDate = dateFormat.format(currentDate);
+        Date currentDate2 = (Date)dateFormat.parse(fDate);
+
+        //Calculate the days between two date
+        long diff = currentDate2.getTime() - returnDate2.getTime();
+        float dayCount = (float) diff / (24 * 60 * 60 * 1000);
+        //Convert float to int
+        int dayCountInt = (int)dayCount;
+        if(dayCountInt > 0 ){
+            int penalty =  dayCountInt * 2;
+            alert.setMessage("Are you sure want to return?\nPenalty : RM"+penalty);
+        }else{
+            String str_day = String.valueOf(dayCount);
+            mDate.setText("Are you sure want to return?");
+        }
+
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -373,6 +439,7 @@ public class BookList extends AppCompatActivity {
 
                 btn_borrow2.setEnabled(true);
                 btn_return2.setEnabled(false);
+                mPenalty2.setVisibility(View.GONE);
             }
         });
 
@@ -471,7 +538,7 @@ public class BookList extends AppCompatActivity {
 
     //Book 3 button
     //Paste to here
-    public void btnReturn_clicked3(View view){
+    public void btnReturn_clicked3(View view) throws ParseException {
         Intent userDetail =getIntent();
         String username=userDetail.getStringExtra("username");
 
@@ -480,7 +547,31 @@ public class BookList extends AppCompatActivity {
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Confirmation");
-        alert.setMessage("Are you sure want to return?");
+
+
+        String returnDate = preferences.getString(username+"returnDate3",null);
+        final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date returnDate3 = (Date)dateFormat.parse(returnDate);
+
+        //Convert date
+        Date currentDate= new Date();
+        String fDate = dateFormat.format(currentDate);
+        Date currentDate3 = (Date)dateFormat.parse(fDate);
+
+        //Calculate the days between two date
+        long diff = currentDate3.getTime() - returnDate3.getTime();
+        float dayCount = (float) diff / (24 * 60 * 60 * 1000);
+        //Convert float to int
+        int dayCountInt = (int)dayCount;
+        if(dayCountInt > 0 ){
+            int penalty =  dayCountInt * 2;
+            alert.setMessage("Are you sure want to return?\nPenalty : RM"+penalty);
+        }else{
+            String str_day = String.valueOf(dayCount);
+            mDate.setText("Are you sure want to return?");
+        }
+
+
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -502,6 +593,7 @@ public class BookList extends AppCompatActivity {
 
                 btn_borrow3.setEnabled(true);
                 btn_return3.setEnabled(false);
+                mPenalty3.setVisibility(View.GONE);
             }
         });
 
@@ -556,6 +648,7 @@ public class BookList extends AppCompatActivity {
                 Date currentDate= new Date();
                 String strReturnDate = new SimpleDateFormat("yyyy/MM/dd").format(returnDate);
 
+
                 //Store return date to shared preferences
                 editor.putString(username+"returnDate4",strReturnDate);
 
@@ -600,7 +693,7 @@ public class BookList extends AppCompatActivity {
 
     //Book 4 button
     //Paste to here
-    public void btnReturn_clicked4(View view){
+    public void btnReturn_clicked4(View view) throws ParseException {
         Intent userDetail =getIntent();
         String username=userDetail.getStringExtra("username");
 
@@ -609,7 +702,29 @@ public class BookList extends AppCompatActivity {
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Confirmation");
-        alert.setMessage("Are you sure want to return?");
+
+        String returnDate = preferences.getString(username+"returnDate4",null);
+        final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date returnDate4 = (Date)dateFormat.parse(returnDate);
+
+        //Convert date
+        Date currentDate= new Date();
+        String fDate = dateFormat.format(currentDate);
+        Date currentDate4 = (Date)dateFormat.parse(fDate);
+
+        //Calculate the days between two date
+        long diff = currentDate4.getTime() - returnDate4.getTime();
+        float dayCount = (float) diff / (24 * 60 * 60 * 1000);
+        //Convert float to int
+        int dayCountInt = (int)dayCount;
+        if(dayCountInt > 0 ){
+            int penalty =  dayCountInt * 2;
+            alert.setMessage("Are you sure want to return?\nPenalty : RM"+penalty);
+        }else{
+            String str_day = String.valueOf(dayCount);
+            mDate.setText("Are you sure want to return?");
+        }
+
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -631,6 +746,7 @@ public class BookList extends AppCompatActivity {
 
                 btn_borrow4.setEnabled(true);
                 btn_return4.setEnabled(false);
+                mPenalty4.setVisibility(View.GONE);
             }
         });
 
@@ -651,7 +767,7 @@ public class BookList extends AppCompatActivity {
 
 
 
-    public void initialize(){
+    public void initialize() throws ParseException {
         Intent userDetail =getIntent();
         String username = userDetail.getStringExtra("username");
         SharedPreferences preferences = getSharedPreferences("spLibrary", MODE_PRIVATE);
@@ -810,6 +926,32 @@ public class BookList extends AppCompatActivity {
             mDate.setVisibility(View.VISIBLE);
             mDate.setText(details1);
 
+            String returnDate = preferences.getString(username+"returnDate1",null);
+            final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            Date returnDate1 = (Date)dateFormat.parse(returnDate);
+
+            //Convert date
+            Date currentDate= new Date();
+            String fDate = dateFormat.format(currentDate);
+            Date currentDate1 = (Date)dateFormat.parse(fDate);
+
+            long diff = currentDate1.getTime() - returnDate1.getTime();
+
+            float dayCount = (float) diff / (24 * 60 * 60 * 1000);
+            int dayCountInt = (int)dayCount;
+            if(dayCountInt > 0 ){
+                int penalty =  dayCountInt * 2;
+
+                mDate.setText(details1);
+                mPenalty.setVisibility(View.VISIBLE);
+                mPenalty.setText("Penalty : RM"+penalty);
+
+            }else{
+                mPenalty.setVisibility(View.GONE);
+                mDate.setText(details1);
+            }
+
+
         }
 
 
@@ -822,6 +964,31 @@ public class BookList extends AppCompatActivity {
             String details2 = preferences.getString(username+"details2",null);
             mDate2.setVisibility(View.VISIBLE);
             mDate2.setText(details2);
+
+            String returnDate = preferences.getString(username+"returnDate2",null);
+            final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            Date returnDate2 = (Date)dateFormat.parse(returnDate);
+
+            //Convert date
+            Date currentDate= new Date();
+            String fDate = dateFormat.format(currentDate);
+            Date currentDate2 = (Date)dateFormat.parse(fDate);
+
+            long diff = currentDate2.getTime() - returnDate2.getTime();
+
+            float dayCount = (float) diff / (24 * 60 * 60 * 1000);
+            int dayCountInt = (int)dayCount;
+            if(dayCountInt > 0 ){
+                int penalty =  dayCountInt * 2;
+                mDate2.setText(details2);
+                mPenalty2.setVisibility(View.VISIBLE);
+                mPenalty2.setText("Penalty : RM"+penalty);
+
+            }else{
+                mPenalty2.setVisibility(View.GONE);
+                mDate2.setText(details2);
+            }
+
 
         }
 
@@ -836,6 +1003,30 @@ public class BookList extends AppCompatActivity {
             mDate3.setVisibility(View.VISIBLE);
             mDate3.setText(details3);
 
+            String returnDate = preferences.getString(username+"returnDate3",null);
+            final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            Date returnDate3 = (Date)dateFormat.parse(returnDate);
+
+            //Convert date
+            Date currentDate= new Date();
+            String fDate = dateFormat.format(currentDate);
+            Date currentDate3 = (Date)dateFormat.parse(fDate);
+
+            long diff = currentDate3.getTime() - returnDate3.getTime();
+
+            float dayCount = (float) diff / (24 * 60 * 60 * 1000);
+            int dayCountInt = (int)dayCount;
+            if(dayCountInt > 0 ){
+                int penalty =  dayCountInt * 2;
+                mDate2.setText(details3);
+                mPenalty3.setVisibility(View.VISIBLE);
+                mPenalty3.setText("Penalty : RM"+penalty);
+
+            }else{
+                mPenalty3.setVisibility(View.GONE);
+                mDate3.setText(details3);
+            }
+
         }
 
         //here for book 4
@@ -848,7 +1039,34 @@ public class BookList extends AppCompatActivity {
             mDate4.setVisibility(View.VISIBLE);
             mDate4.setText(details4);
 
+
+            String returnDate = preferences.getString(username+"returnDate4",null);
+            final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            Date returnDate4 = (Date)dateFormat.parse(returnDate);
+
+            //Convert date
+            Date currentDate= new Date();
+            String fDate = dateFormat.format(currentDate);
+            Date currentDate4 = (Date)dateFormat.parse(fDate);
+
+            long diff = currentDate4.getTime() - returnDate4.getTime();
+
+            float dayCount = (float) diff / (24 * 60 * 60 * 1000);
+            int dayCountInt = (int)dayCount;
+            if(dayCountInt > 0 ){
+                int penalty =  dayCountInt * 2;
+                mDate4.setText(details4);
+                mPenalty4.setVisibility(View.VISIBLE);
+                mPenalty4.setText("Penalty : RM"+penalty);
+
+            }else{
+                mPenalty4.setVisibility(View.GONE);
+                mDate4.setText(details4);
+            }
         }
+
+
+
 
 
 
